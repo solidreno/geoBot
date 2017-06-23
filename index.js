@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
   res.status(200).send('Hello World !');
 });
 
-app.post('/', (req, res) => {
+app.post('/', jsonParser, (req, res) => {
   let body = req.body;
   res.status(200).send(JSON.stringify(body, null, 2));
 });
