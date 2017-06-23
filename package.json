@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/solidreno/geoBot/issues"
   },
-  "homepage": "https://github.com/solidreno/geoBot#readme"
+  "homepage": "https://github.com/solidreno/geoBot#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
