@@ -14,6 +14,12 @@ app.get('/', (req, res) => {
 app.post('/', jsonParser, (req, res) => {
   let queryAction = req.body.result.action;
   let isoAlpha2 = req.body.result.parameters.isoAlpha2;
+  if (!isoAlpha2) {
+    res.status(200).json({
+      speech: 'Je ne sais pas de quel pays tu parles...',
+      displayText: 'Je ne sais pas de quel pays tu parles...',
+    });
+  }
   geoDB.getCountryInfo(isoAlpha2).
   then(function (response) {
 
