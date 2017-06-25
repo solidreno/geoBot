@@ -11,10 +11,16 @@ app.get('/', (req, res) => {
   res.status(200).send('Hello World !');
 });
 
-app.get('/france', (req, res) => {
-  geoDB.getCountryInfo('FR').
+app.post('/country', jsonParser, (req, res) => {
+  let isoAlpha2 = req.body.result.parameters.isoAlpha2;
+  geoDB.getCountryInfo(isoAlpha2).
   then(function (response) {
-    res.status(200).json(response);
+    let apiAIResponse = {
+      speech: `La capitale de ${response.geonames[0].countryName} est ${response.geonames[0].capital}`,
+      displayText: `La capitale de ${response.geonames[0].countryName} est ${response.geonames[0].capital}`,
+      source: `api.geonames.org`
+    }
+    res.status(200).json(apiAIResponse);
   })
   .catch(function (error) {
     res.status(500).json(error);
