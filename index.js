@@ -1,3 +1,4 @@
+const geoDB = require('./geoDB');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -8,6 +9,16 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello World !');
+});
+
+app.get('/france', (req, res) => {
+  geoDB.getCountryInfo('FR').
+  then(function (response) {
+    res.status(200).json(response);
+  })
+  .catch(function (error) {
+    res.status(500).json(error);
+  });
 });
 
 app.post('/', jsonParser, (req, res) => {

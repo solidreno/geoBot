@@ -1,28 +1,19 @@
 const config = require('./config');
 const http = require('http');
 
-getCountryInfo('FR');
+module.exports = {
+  getCountryInfo
+}
 
 function getCountryInfo (isoAlpha2) {
-  makeGeoNamesRequest(`/countryInfoJSON?country=${isoAlpha2}`)
-  .then(function (response) {
-    console.dir(response);
-  })
-  .catch(function (error) {
-    console.dir(error);
-  });
+  return makeGeoNamesRequest(`/countryInfoJSON?country=${isoAlpha2}`);
 }
 
 function makeGeoNamesRequest (url) {
   return new Promise( (resolve, reject) => {
     console.log(`${url}&lang=fr&username=${config.geoNamesUser}`);
-    http.get(
-      {
-        // host: 'api.geonames.org',
-        host: 'fr.wikipedia.org',
-        // path: `${url}&lang=fr&username=${config.geoNamesUser}`
-        path: `/wiki/Bataillon`
-      }, (res) => {
+    http.get(`http://api.geonames.org/${url}&lang=fr&username=${config.geoNamesUser}`,
+      (res) => {
       const { statusCode } = res;
       const contentType = res.headers['content-type'];
 
