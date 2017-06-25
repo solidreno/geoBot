@@ -39,6 +39,11 @@ app.post('/', jsonParser, (req, res) => {
       apiAIResponse.displayText = apiAIResponse.speech;
     }
 
+    if (queryAction == 'getPopulation') {
+      apiAIResponse.speech = `Il y a ${response.geonames[0].population} habitants en ${response.geonames[0].countryName}`;
+      apiAIResponse.displayText = apiAIResponse.speech;
+    }
+
     res.status(200).json(apiAIResponse);
   })
   .catch(function (error) {
