@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   res.status(200).send('Hello World !');
 });
 
-app.post('/', jsonParser, (req, res) => {
+app.post('/geonames/', jsonParser, (req, res) => {
   let queryAction = req.body.result.action;
   let isoAlpha2 = req.body.result.parameters.isoAlpha2;
   if (!isoAlpha2) {
