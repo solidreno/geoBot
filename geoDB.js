@@ -52,8 +52,3 @@ function makeGeoNamesRequest (url) {
     });
   });
 }
-
-/*const countriesISO3 = countries.reduce((tmpISO3, country) => {
-  tmpISO3[country.isoAlpha3] = country;
-  return tmpISO3;
-}, {});*/
