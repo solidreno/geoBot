@@ -3,7 +3,19 @@ module.exports = {
 	getArticle,
 	getPrepositionDe,
 	getPrepositionEn,
-	isPlural
+	isPlural,
+	getAll
+}
+
+function getAll (isoAlpha2) {
+	if (COUNTRIES[isoAlpha2]) {
+		let pays = COUNTRIES[isoAlpha2];
+		pays.article = getArticle(isoAlpha2);
+		pays.de = getPrepositionDe(isoAlpha2);
+		pays.en = getPrepositionEn(isoAlpha2);
+		return pays;
+	}
+	return;
 }
 
 function isPlural (isoAlpha2) {

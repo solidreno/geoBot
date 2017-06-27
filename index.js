@@ -1,4 +1,5 @@
 const geoDB = require('./geoDB');
+const sb = require('./sentenceBuilder');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -30,17 +31,20 @@ app.post('/geonames/', jsonParser, (req, res) => {
     }
 
     if (queryAction == 'getCapital') {
-      apiAIResponse.speech = `La capitale de ${response.geonames[0].countryName} est ${response.geonames[0].capital}`;
+      let answer = sb.getSentence('capitale', {'isoAlpha2': isoAlpha2, 'capitale': response.geonames[0].capital});
+      apiAIResponse.speech = answer;
       apiAIResponse.displayText = apiAIResponse.speech;
     }
 
     if (queryAction == 'getSize') {
-      apiAIResponse.speech = `${response.geonames[0].countryName} fait ${response.geonames[0].areaInSqKm} km²`;
+      let answer = sb.getSentence('superficie', {'isoAlpha2': isoAlpha2, 'area': response.geonames[0].areaInSqKm});
+      apiAIResponse.speech = answer;
       apiAIResponse.displayText = apiAIResponse.speech;
     }
 
     if (queryAction == 'getPopulation') {
-      apiAIResponse.speech = `Il y a ${response.geonames[0].population} habitants en ${response.geonames[0].countryName}`;
+      let answer = sb.getSentence('population', {'isoAlpha2': isoAlpha2, 'pop': response.geonames[0].population});
+      apiAIResponse.speech = answer;
       apiAIResponse.displayText = apiAIResponse.speech;
     }
 
