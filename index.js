@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
 
 app.post('/geonames/', jsonParser, (req, res) => {
   let queryAction = req.body.result.action;
+  console.dir(req.body.result);
   let isoAlpha2 = req.body.result.parameters.isoAlpha2;
   if (!isoAlpha2) {
     res.status(200).json({
