@@ -74,6 +74,10 @@ function getArticle (isoAlpha2) {
 	if (COUNTRIES[isoAlpha2]) {
 		let pays = COUNTRIES[isoAlpha2];
 
+		if (pays.noArticle) {
+			return '';
+		}
+
 		if (VOYELLES.includes(pays.name.substr(0,1).toLowerCase())) {
 			return `L'`;
 		}
@@ -332,7 +336,8 @@ const COUNTRIES = {
 	"CY":{
 		"name": "Chypre",
 		"gender": false,
-		"plural": false
+		"plural": false,
+		"noArticle": true
 	},
 	"CC":{
 		"name": "Îles Cocos",
@@ -657,7 +662,8 @@ const COUNTRIES = {
 	"IL":{
 		"name": "Israël",
 		"gender": true,
-		"plural": false
+		"plural": false,
+		"noArticle": true
 	},
 	"IT":{
 		"name": "Italie",
@@ -767,7 +773,8 @@ const COUNTRIES = {
 	"MG":{
 		"name": "Madagascar",
 		"gender": true,
-		"plural": false
+		"plural": false,
+		"noArticle": true
 	},
 	"MY":{
 		"name": "Malaisie",
