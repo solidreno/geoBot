@@ -54,6 +54,14 @@ function getPrepositionEn (isoAlpha2) {
 	if (COUNTRIES[isoAlpha2]) {
 		let pays = COUNTRIES[isoAlpha2];
 
+		if (pays.noArticle) {
+			if (pays.gender) {
+				return 'À ';
+			} else {
+				return 'En ';
+			}
+		}
+
 		// Noms de pays au pluriel
 		if (pays.plural) {
 			return 'Aux '
@@ -335,7 +343,7 @@ const COUNTRIES = {
 	},
 	"CY":{
 		"name": "Chypre",
-		"gender": false,
+		"gender": true,
 		"plural": false,
 		"noArticle": true
 	},
@@ -661,7 +669,7 @@ const COUNTRIES = {
 	},
 	"IL":{
 		"name": "Israël",
-		"gender": true,
+		"gender": false,
 		"plural": false,
 		"noArticle": true
 	},
